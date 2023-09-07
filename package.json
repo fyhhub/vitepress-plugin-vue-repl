@@ -1,6 +1,6 @@
 {
   "name": "vitepress-plugin-vue-repl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "In Vitepress use playground",
   "module": "./dist/index.js",
   "main": "./dist/index.js",
