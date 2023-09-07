@@ -14,11 +14,11 @@ function VueReplMdPlugin(md) {
         render: function (tokens, idx) {
             if (tokens[idx].nesting === 1) {
                 const vueToken = tokens.find(e => e.info === 'vue');
-                return `<VuePlayground>${encodeURIComponent(vueToken.content)}\n`;
+                return `<ClientOnly><VuePlayground>${encodeURIComponent(vueToken.content)}\n`;
             }
             else {
                 // closing tag
-                return '</VuePlayground>\n';
+                return '</VuePlayground></ClientOnly>\n';
             }
         }
     });
