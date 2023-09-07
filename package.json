@@ -1,9 +1,10 @@
 {
   "name": "vitepress-plugin-vue-repl",
   "version": "0.0.1",
-  "description": "",
+  "description": "In Vitepress use playground",
   "module": "./dist/index.js",
   "main": "./dist/index.js",
+  "homepage": "https://github.com/fyhhub/vitepress-plugin-vue-repl",
   "types": "./dist",
   "scripts": {
     "dev": "tsc --watch",
