@@ -33,11 +33,7 @@ import DefaultTheme from 'vitepress/theme';
 export default {
     ...DefaultTheme,
     enhanceApp(ctx) {
-        if (!import.meta.env.SSR) {
-            const Playground = await import('vitepress-plugin-vue-repl/components/index.vue')
-          // Do not modify component name
-            ctx.app.component('VuePlayground', Playground.default);
-        }
+      ctx.app.component('VuePlayground', Playground.default);
     },
 };
 ```
