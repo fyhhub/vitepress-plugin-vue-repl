@@ -33,7 +33,7 @@ import DefaultTheme from 'vitepress/theme';
 export default {
     ...DefaultTheme,
     enhanceApp(ctx) {
-      ctx.app.component('VuePlayground', Playground.default);
+      ctx.app.component('VuePlayground', Playground);
     },
 };
 ```
