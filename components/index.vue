@@ -1,12 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Repl, ReplStore } from '@vue/repl';
-import Monaco from '@vue/repl/monaco-editor';
 import { utoa } from './utils';
-import '@vue/repl/style.css';
+import { defineClientComponent } from 'vitepress'
+import "@vue/repl/style.css";
 const store = ref();
 const slots = defineSlots();
-
+const Monaco = defineClientComponent(() => {
+  return import('@vue/repl/monaco-editor')
+})
 onMounted(() => {
   const children = slots.default();
   const code = children?.[0]?.children;
@@ -18,18 +20,41 @@ onMounted(() => {
   });
 });
 </script>
+<style scoped>
+.playground {
+  height: 400px;
+}
+.playground :deep(.left) {
+  float: inherit;
+  margin-left: initial;
+  left: initial;
+  right: initial;
+  background-color: initial;
+  min-height: initial;
+}
 
+.playground :deep(.right) {
+  float: inherit;
+  margin-left: initial;
+  left: initial;
+  right: initial;
+  background-color: initial;
+  min-height: initial;
+}
+
+.playground :deep(.wrapper) {
+  display: none;
+}
+</style>
 <template>
-  <ClientOnly>
-    <div style="height: 400px">
-      <Repl
-        v-if="store"
-        autoResize
-        :store="store"
-        :editor="Monaco"
-        :showCompileOutput="true"
-        :clearConsole="false"
-      />
-    </div>
-  </ClientOnly>
+  <div class="playground">
+    <Repl
+      v-if="store"
+      autoResize
+      :store="store"
+      :editor="Monaco"
+      :showCompileOutput="true"
+      :clearConsole="false"
+    />
+  </div>
 </template>
