@@ -1,0 +1,31 @@
+{
+  "name": "vitepress-plugin-vue-repl",
+  "version": "1.0.0",
+  "description": "",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/repl": "^2.5.8",
+    "fflate": "^0.8.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-container": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^13.0.1",
+    "@types/markdown-it-container": "^2.0.6",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "components",
+    "node",
+    "dist"
+  ]
+}
