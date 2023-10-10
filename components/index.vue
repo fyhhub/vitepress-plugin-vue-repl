@@ -2,9 +2,9 @@
 import { ref, onMounted } from 'vue';
 import { Repl, ReplStore } from '@vue/repl';
 import { utoa } from './utils';
+import { defineClientComponent } from 'vitepress'
 import "@vue/repl/style.css";
-import CodeMirror from '@vue/repl/codemirror-editor'
-import Monaco from '@vue/repl/monaco-editor'
+
 const store = ref();
 const slots = defineSlots();
 const props = defineProps({
@@ -12,6 +12,12 @@ const props = defineProps({
     type: String,
     default: 'CodeMirror'
   }
+});
+const Monaco = defineClientComponent(() => {
+  return import('@vue/repl/monaco-editor')
+});
+const CodeMirror = defineClientComponent(() => {
+  return import('@vue/repl/codemirror-editor')
 });
 
 onMounted(() => {
