@@ -7,14 +7,16 @@ exports.VueReplMdPlugin = void 0;
 const markdown_it_container_1 = __importDefault(require("markdown-it-container"));
 function VueReplMdPlugin(md) {
     const defaultRender = md.renderer.rules.fence;
+    const pattern = /^playground\s*(CodeMirror|Monaco)?\s*$/i;
     md.use(markdown_it_container_1.default, 'playground', {
         validate: function (params) {
-            return params.trim().match(/^playground\s*(.*)$/);
+            return params.trim().match(pattern);
         },
         render: function (tokens, idx) {
             if (tokens[idx].nesting === 1) {
-                const vueToken = tokens.find(e => e.info === 'vue');
-                return `<VuePlayground>${encodeURIComponent(vueToken.content)}\n`;
+                const editor = tokens[idx].info.toLowerCase().indexOf('monaco') > -1 ? 'Monaco' : 'CodeMirror';
+                const vueToken = tokens.slice(idx).find(e => e.info === 'vue');
+                return `<VuePlayground editor="${editor}">${encodeURIComponent(vueToken.content)}\n`;
             }
             else {
                 // closing tag
