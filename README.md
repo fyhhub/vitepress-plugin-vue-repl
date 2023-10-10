@@ -45,3 +45,9 @@ export default {
 
 
 ![16940543340541694054333997.png](https://fastly.jsdelivr.net/gh/fyhhub/imgs@main/16940543340541694054333997.png)
+## Code Editor Config
+
++ Monaco
++ CodeMirror
+
+![16969186209081696918620011.png](https://fastly.jsdelivr.net/gh/fyhhub/imgs@main/16969186209081696918620011.png)
