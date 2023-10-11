@@ -54,5 +54,4 @@ export default {
 
 
 ## Vue Repl Config & imports
-
-![16970092462041697009246094.png](https://fastly.jsdelivr.net/gh/fyhhub/imgs@main/16970092462041697009246094.png)
+![16970099573521697009956483.png](https://fastly.jsdelivr.net/gh/fyhhub/imgs@main/16970099573521697009956483.png)
