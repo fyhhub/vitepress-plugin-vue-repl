@@ -16,7 +16,8 @@ function VueReplMdPlugin(md) {
             if (tokens[idx].nesting === 1) {
                 const editor = tokens[idx].info.toLowerCase().indexOf('monaco') > -1 ? 'Monaco' : 'CodeMirror';
                 const vueToken = tokens.slice(idx).find(e => e.info === 'vue');
-                return `<VuePlayground editor="${editor}">${encodeURIComponent(vueToken.content)}\n`;
+                const jsonToken = tokens.slice(idx).find(e => e.info === 'json') || '';
+                return `<VuePlayground editor="${editor}" config="${encodeURIComponent(jsonToken.content)}">${encodeURIComponent(vueToken.content)}\n`;
             }
             else {
                 // closing tag
@@ -30,6 +31,9 @@ function VueReplMdPlugin(md) {
         const inPlayground = prevToken && prevToken.nesting === 1 && prevToken.info.trim().match(/^playground\s*(.*)$/);
         // 当前token是 ```vue 并且 在 playground 块中, 不去渲染内容
         if (token.info === 'vue' && inPlayground) {
+            return '';
+        }
+        if (token.info === 'json' && inPlayground) {
             return '';
         }
         return defaultRender(tokens, idx, options, env, self);

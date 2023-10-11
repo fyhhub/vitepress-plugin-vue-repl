@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { Repl, ReplStore } from '@vue/repl';
 import { utoa } from './utils';
 import { defineClientComponent } from 'vitepress'
@@ -11,6 +11,10 @@ const props = defineProps({
   editor: {
     type: String,
     default: 'CodeMirror'
+  },
+  config: {
+    type: String,
+    default: ''
   }
 });
 const Monaco = defineClientComponent(() => {
@@ -19,6 +23,10 @@ const Monaco = defineClientComponent(() => {
 const CodeMirror = defineClientComponent(() => {
   return import('@vue/repl/codemirror-editor')
 });
+const config = ref({});
+const editorConfig = computed(() => {
+  return config.value.editorConfig ? config.value.editorConfig : {}
+})
 
 onMounted(() => {
   const children = slots.default();
@@ -29,6 +37,18 @@ onMounted(() => {
   store.value = new ReplStore({
     serializedState: utoa(JSON.stringify(file))
   });
+
+  if (props.config) {
+    try {
+      config.value = JSON.parse(decodeURIComponent(props.config))
+    } catch(e) {
+      console.error('playgound 配置解析错误', e);
+    }
+  }
+
+  config.value?.imports && store.value.setImportMap({
+    imports: config.value.imports
+  })
 });
 </script>
 <style scoped>
@@ -66,6 +86,7 @@ onMounted(() => {
       :editor="editor === 'CodeMirror' ? CodeMirror : Monaco"
       :showCompileOutput="true"
       :clearConsole="false"
+      v-bind="editorConfig"
     />
   </div>
 </template>

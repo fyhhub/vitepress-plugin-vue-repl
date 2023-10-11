@@ -51,3 +51,8 @@ export default {
 + CodeMirror
 
 ![16969186209081696918620011.png](https://fastly.jsdelivr.net/gh/fyhhub/imgs@main/16969186209081696918620011.png)
+
+
+## Vue Repl Config & imports
+
+![16970092462041697009246094.png](https://fastly.jsdelivr.net/gh/fyhhub/imgs@main/16970092462041697009246094.png)
